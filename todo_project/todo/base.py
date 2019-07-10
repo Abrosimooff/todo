@@ -60,8 +60,6 @@ class EnterpriseAuthForm(AuthenticationForm):
             else:
                 self.confirm_login_allowed(self.user_cache)
 
-        # user = self.get_user()
-        # if user and self.cleaned_data.get('enterprise_id'):
         if not UserEnterprise.objects.filter(user=self.user_cache, enterprise_id=self.cleaned_data['enterprise_id']).exists():
             raise forms.ValidationError(
                 u'Пользователю нельзя авторизоваться в данную организацию',
